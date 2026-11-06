@@ -177,33 +177,33 @@ match the paragraphs below.
        alt="Methodology: input collections go through language clean-up, query generation, validation, cross-check and rewriting; kept queries are merged per language into the multilingual set and translated into the crosslingual set; discarded pairs go to a failed file.">
 </p>
 
-**1. Language clean-up.** Each input collection was made monolingual with
-`translate_all_to_source_lang.py`: texts not in the collection's dominant
-language were translated into it.
-
-**2. Query generation.** For each document, an LLM writes one query that the
+**1. Query generation.** For each document, an LLM writes one query that the
 document answers. The prompt asks for a specific fact or claim rather than the
 general topic, phrased as a natural-language information need of 5 to 20
 words in the language of the document, without copying phrases of more than
 three words.
 
-**3. Validation.** An LLM judge decides whether the document answers the
+**2. Validation.** An LLM judge decides whether the document answers the
 query. A document counts as relevant if it directly answers the query or
 contains the key information to answer it; sharing the topic is not enough.
 A query that fails is generated again. Documents without a valid query after
 two attempts are discarded.
 
-**4. Cross-check against similar documents.** All documents and queries are
+**3. Cross-check against similar documents.** All documents and queries are
 embedded, and the three documents most similar to each query (excluding its
 own) are retrieved. The same judge checks whether the query is also answered
 by any of them. Queries that are not are kept as they are.
 
-**5. Rewriting.** Queries answered by another document are rewritten once.
+**4. Rewriting.** Queries answered by another document are rewritten once.
 The rewrite prompt shows the target document and the three retrieved
 documents, and asks for details that only the target document contains. The
 rewritten query is then judged against its own document and, if it still
 matches, retrieved and checked again. A query is discarded if its rewrite no
 longer matches its own document or still matches another document.
+
+**5. Language clean-up.** Each query was ensured to be monolingual through
+`translate_all_to_source_lang.py`: queries not in the collection's dominant
+language were translated into it.
 
 **6. Merging.** The final queries of each collection were combined into one
 file per language, with the collection recorded in `SourceCorpus`. This is
@@ -224,6 +224,5 @@ document.
   were only checked if they were among the three most similar documents to the
   query, so unchecked documents may still be relevant.
 - Relevance was judged by an LLM; the judgments were not verified manually.
-- The same LLM generates and judges the queries.
 - Translations were checked automatically for their language with
   `langdetect`, not for their accuracy.
