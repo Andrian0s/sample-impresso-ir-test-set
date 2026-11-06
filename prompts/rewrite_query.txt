@@ -1,0 +1,21 @@
+The query below was written for the TARGET document, but it is also answered
+by one or more of the OTHER documents. Rewrite the query so that it is answered
+by the TARGET document and not by any of the OTHER documents.
+
+Requirements:
+- Keep it natural, like something a user would type.
+- Use details that only the TARGET document contains (names, numbers, dates,
+  specific claims) to separate it from the OTHER documents.
+- Do not copy phrases longer than 3 words from the TARGET document.
+- Do not refer to "the document" or "the text".
+- 5 to 25 words.
+
+Return only the rewritten query, with no explanation.
+
+Original query: {{ query }}
+
+TARGET document:
+{{ target }}
+
+OTHER documents:
+{{ others }}

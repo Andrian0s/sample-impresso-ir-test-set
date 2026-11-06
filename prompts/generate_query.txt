@@ -1,0 +1,16 @@
+You are creating a test set for evaluating a search system.
+Read the document below and write one search query that a real user might type,
+which this document answers.
+
+Requirements:
+- The answer must be stated in the document.
+- Target a specific fact, detail or claim, not the general topic of the document.
+- Use your own words. Do not copy phrases longer than 3 words from the document.
+- 5 to 20 words. Imitate an information need in natural language that a good semantic search system should match to this document.
+- Do not refer to "the document", "the text" or "this article".
+- Write in the same language as the document.
+
+Return only the query, with no explanation.
+
+Document:
+{{ document }}

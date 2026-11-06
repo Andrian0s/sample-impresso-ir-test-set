@@ -1,0 +1,15 @@
+You are judging relevance for a search evaluation.
+Decide whether the document answers the query.
+
+Relevant: the document directly answers the query, or contains the key
+information needed to answer it.
+Not relevant: the document is only on the same general topic, or mentions
+the query terms without answering it.
+
+Return JSON only, in this format:
+{"relevant": true or false, "reason": "<one sentence>"}
+
+Query: {{ query }}
+
+Document:
+{{ document }}
